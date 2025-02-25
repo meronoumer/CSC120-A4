@@ -46,7 +46,12 @@ public class Train implements TrainRequirements{
   * @return The Car object at the specified index.
   */
  public Car getCar(int i){
-    return this.cars.get(i);
+   if(i<cars.size() && i>=0){
+      return this.cars.get(i);
+   }else{
+      return null;
+   }
+    
  }
 
  /**
@@ -106,7 +111,7 @@ public class Train implements TrainRequirements{
    
       
    
- }
+ }}
 
 
 

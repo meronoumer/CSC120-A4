@@ -13,7 +13,7 @@ public class Car implements CarRequirements {
 
  */
 public Car( ArrayList passengers, int Capacity) {
-    this.passengers = passengers; 
+    this.passengers = new ArrayList<Passenger>(passengers); 
     this.capacity = capacity; 
 }
 
@@ -91,3 +91,4 @@ public void printManifest(){
     }
 }
 }
+
