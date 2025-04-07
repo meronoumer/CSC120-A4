@@ -24,8 +24,7 @@ public class Passenger implements PassengerRequirements {
     public void boardCar(Car c){
         if (c.addPassenger(this)){
             System.out.println(this);
-        }
-        else
+        }else
         {
             System.out.println("This car is full.");
         }
@@ -43,6 +42,14 @@ public class Passenger implements PassengerRequirements {
         }else{
             System.out.println(this);
         }
+    }
+
+    public String getName(){
+        return name;
+
+    }
+    public String toString() {
+        return name;
     }
 
 

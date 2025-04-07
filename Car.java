@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 public class Car implements CarRequirements {
-    private ArrayList passengers;
+
+    private ArrayList<Passenger> passengers;
     private int capacity;
 
 
@@ -12,9 +13,9 @@ public class Car implements CarRequirements {
      * @param capacity   The maximum number of passengers the car can hold.
 
  */
-public Car( ArrayList passengers, int Capacity) {
-    this.passengers = new ArrayList<Passenger>(passengers); 
-    this.capacity = capacity; 
+public Car(int carCapacity) {
+    this.passengers = new ArrayList<Passenger>(); 
+    this.capacity = carCapacity; 
 }
 
 /**
@@ -38,6 +39,7 @@ public int seatsRemaining(){
 
 }
 
+
 /**
  * Adds a passenger to the car if there is available space.
  *
@@ -45,17 +47,17 @@ public int seatsRemaining(){
  * @return True if the passenger was added successfully, false otherwise.
  */
 public Boolean addPassenger(Passenger p){
-    if (seatsRemaining() > 0 && !this.passengers.contains(p)){
+    if (seatsRemaining() > 0 || passengers.contains(p)){
+        for (Passenger i : this.passengers){
+                return false;
+            }
+        }
+        
         this.passengers.add(p);
-        return true;}
-
-    else{
-        return false;
+        return true;
     }
-    
 
 
-}
 
 /**
  * Removes a passenger from the car if they are present.
@@ -64,16 +66,19 @@ public Boolean addPassenger(Passenger p){
  * @return True if the passenger was removed successfully, false otherwise.
  */
 public Boolean removePassenger(Passenger p){
-    if(seatsRemaining() > 0 && this.passengers.contains(p)){
-        this.passengers.remove(p);
-        return true;
+    boolean removed = false;
+    for (int i = this.passengers.size() - 1; i >= 0; i--) {
+
+        if (this.passengers.get(i).equals(p)){
+            this.passengers.remove(i);
+            removed = true;
+            break;
+            
+        }
+    }
+        return removed;
         
     }
-    else{
-        return false;
-    }
-
-}
 
 /**
  * Prints the passenger manifest of the car.
@@ -85,10 +90,13 @@ public void printManifest(){
         for(Object person : passengers){
             System.out.println(person);
         }System.out.println("----------------------");
-    }
-    else{
+    }else{
         System.out.println("This car is empty.") ;
+    }}
+
     }
-}
-}
+
+
+
+
 

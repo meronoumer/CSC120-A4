@@ -5,7 +5,6 @@ import java.util.ArrayList;
  * Represents a Train with an Engine and a collection of Cars.
  */
 public class Train implements TrainRequirements{
-    //-  an `ArrayList` to keep track of the `Car`s currently attached
     private ArrayList <Car> cars;
     private Engine engine;
  
@@ -20,12 +19,12 @@ public class Train implements TrainRequirements{
 */  
 
  public Train(FuelType fuelType, double fuelCapacity, int nCars, int passengerCapacity){
-   this.engine = new Engine(fuelType, nCars, passengerCapacity);
+   this.engine = new Engine(fuelType, fuelCapacity, fuelCapacity);
    this.cars = new ArrayList <Car>() ;
 
    
    for (int i = 0; i <= nCars;i++){
-      this.cars.add(new Car(cars, passengerCapacity));
+      this.cars.add(new Car(passengerCapacity)); 
    }
 
 
@@ -45,6 +44,7 @@ public class Train implements TrainRequirements{
   * @param i The index of the Car.
   * @return The Car object at the specified index.
   */
+  
  public Car getCar(int i){
    if(i<cars.size() && i>=0){
       return this.cars.get(i);
@@ -52,6 +52,10 @@ public class Train implements TrainRequirements{
       return null;
    }
     
+ }
+
+ public ArrayList getCars(){
+   return this.cars;
  }
 
  /**
@@ -88,10 +92,10 @@ public class Train implements TrainRequirements{
   * Prints the passenger manifest of the train.
   */  
  public void printManifest(){
-   boolean isEmpty = false;
+   boolean isEmpty = true;
    for (Car car:cars){
       if (car.seatsRemaining()<car.getCapacity()){
-         isEmpty = true;
+         isEmpty = false;
          System.out.println("This car is empty.");}
 
       }
